@@ -11,7 +11,11 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav mr-auto">
+        <li class="nav-item {{ active_class(if_route('topics.index')) }}"><a class="nav-link" href="{{ route('topics.index') }}">话题</a></li>
 
+        @foreach(category_menu() as $k=>$v)
+        <li class="nav-item {{ category_nav_active($v->id) }}"><a class="nav-link" href="{{ route('categories.show', $v->id) }}">{{ $v->name }}</a></li>
+        @endforeach
       </ul>
 
       <!-- Right Side Of Navbar -->
