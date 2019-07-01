@@ -12,6 +12,12 @@ class User extends Authenticatable implements MustVerifyEmailContract
 {
     use Notifiable, MustVerifyEmailTrait;
 
+    // 接下来我们在用户模型中新增与话题模型的关联：
+    public function topics(){
+
+        return $this->hasMany(Topic::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
