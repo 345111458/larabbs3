@@ -18,6 +18,12 @@ class User extends Authenticatable implements MustVerifyEmailContract
         return $this->hasMany(Topic::class);
     }
 
+
+    public function isAuthOf($models){
+
+        return $this->id === $models->user_id;
+    }
+
     /**
      * The attributes that are mass assignable.
      *
