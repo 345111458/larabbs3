@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     }
 
 
-    public function isAuthOf($models){
+    public function isAuthorOf($models){
 
         return $this->id === $models->user_id;
     }
