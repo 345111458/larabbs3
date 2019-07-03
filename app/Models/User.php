@@ -29,6 +29,14 @@ class User extends Authenticatable implements MustVerifyEmailContract
         $this->laravelNotify($instance);
     }
 
+
+    public function markAsRead(){
+
+        $this->notification_count = 0;
+        $this->save();
+        $this->unreadNotifications->markAsRead();
+    }
+
     // 接下来我们在用户模型中新增与话题模型的关联：
     public function topics(){
 
