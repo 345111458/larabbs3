@@ -6,11 +6,28 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Auth\MustVerifyEmail as MustVerifyEmailTrait;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
-
+use Auth;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
-    use Notifiable, MustVerifyEmailTrait;
+    use MustVerifyEmailTrait;
+
+    use Notifiable {
+        notify as protected laravelNotify;
+    }
+
+    public function notify($instance){
+
+        if ($this->id === Auth::id()) {
+            return ;
+        }
+
+        if (method_exists($instance , 'toDatabase')) {
+            $this->increment('notification_count' , 1);
+        }
+
+        $this->laravelNotify($instance);
+    }
 
     // 接下来我们在用户模型中新增与话题模型的关联：
     public function topics(){
