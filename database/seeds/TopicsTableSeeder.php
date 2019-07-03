@@ -19,7 +19,7 @@ class TopicsTableSeeder extends Seeder
     	// 获取 Faker 实例
     	$faker = app(Faker\Generator::class);
 
-        $topics = factory(Topic::class)->times(1150)->make()->each(function ($topic) use ($user_id,$category_id,$faker) {
+        $topics = factory(Topic::class)->times(200)->make()->each(function ($topic) use ($user_id,$category_id,$faker) {
             
             // 从用户 ID 数组中随机取出一个并赋值
         	$topic->user_id = $faker->randomElement($user_id);
