@@ -26,6 +26,8 @@
           {!! $reply->content !!}
         </div>
       </div>
+
+
     </li>
 
     @if ( ! $loop->last)
@@ -33,4 +35,7 @@
     @endif
 
   @endforeach
+  <div class="media-body" style="padding-top:50px;">
+    {!! $replies->appends(Request::except('pages'))->render() !!}
+  </div>
 </ul>
