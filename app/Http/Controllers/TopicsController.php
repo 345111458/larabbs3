@@ -11,6 +11,7 @@ use Auth;
 use App\Handlers\ImageUploadHandler;
 
 
+
 class TopicsController extends Controller
 {
     public function __construct()
@@ -29,6 +30,37 @@ class TopicsController extends Controller
     	if (!empty($topic->slug)  && $topic->slug != $request->slug) {
     		return redirect($topic->link() , 301);
     	}
+
+
+
+
+
+    	// $path = $request->getUri();
+
+    	// $notifications = \DB::table('notifications')->select('id','data')->where(['notifiable_id'=>Auth::id()])->WhereNull('read_at')->make()->each(function($notifty) use ($path){
+
+    	// 	// $noniftyData = json_decode($notifty->data);
+    	// 	$notifty->read_at = now();
+
+    	// })->get();
+    	// foreach ($notifications as $k => $v) {
+    	// 	$data = json_decode($v->data)
+    	// 	foreach ($data as $kk => $vv) {
+    	// 		$url = explode('#',$vv->topic_link);
+    	// 		if ( $url[0] == $path) {
+    	// 			$v->update(['read_at'=>now()]);
+    	// 			break;
+    	// 		}
+    	// 	}
+    	// }
+
+
+    	// print_r($path);
+    	// // $notifications = json_decode($notifications[0]->data);
+    	// dd($notifications);
+    	// // dd($notifications->topic_link);
+
+
         return view('topics.show', compact('topic'));
     }
 

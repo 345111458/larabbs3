@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
     public function notify($instance){
 
         if ($this->id === Auth::id()) {
-            return ;
+            return ; 
         }
 
         if (method_exists($instance , 'toDatabase')) {
@@ -36,6 +36,9 @@ class User extends Authenticatable implements MustVerifyEmailContract
         $this->save();
         $this->unreadNotifications->markAsRead();
     }
+
+
+    // public function 
 
     // 接下来我们在用户模型中新增与话题模型的关联：
     public function topics(){

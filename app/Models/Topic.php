@@ -27,6 +27,13 @@ class Topic extends Model
     }
 
 
+    public function updateReplyCount(){
+
+        $this->reply_count = $this->replies->count();
+        $this->save();
+    }
+
+
     public function scopeWithOrder($query , $order){
     	switch ($order) {
     		case 'recent':
