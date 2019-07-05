@@ -21,6 +21,7 @@ class User extends Authenticatable implements MustVerifyEmailContract
         notify as protected laravelNotify;
     }
 
+
     public function notify($instance){
 
         if ($this->id === Auth::id()) {
@@ -89,4 +90,30 @@ class User extends Authenticatable implements MustVerifyEmailContract
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    // 修改器 ，入库前修改密码 ，给密码加密
+    public function setPasswordAttribute($value){
+
+        // 如果值的长度等于 60，即认为是已经做过加密的情况
+        if (strlen($value) != '60') {
+            // 不等于 60，做密码加密处理
+            $value = bcrypt($value);
+        }
+
+        $this->attributes['password'] = $value;
+    }
+
+
+    public function setAvatarAttribute($value){
+
+        // 如果不是 `http` 子串开头，那就是从后台上传的，需要补全 URL
+        if (! starts_with($value, 'http') ) {
+            // 拼接完整的 URL
+            $value = config('app.url') . "/uploads/images/avatars/$value";
+        }
+
+        $this->attributes['avatar'] = $value;
+    }
+
 }
