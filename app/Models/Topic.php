@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Models;
+use Carbon\Carbon;
 
 class Topic extends Model
 {
+    
     protected $fillable = [
         'title', 'body', 'category_id', 'excerpt', 'slug'
     ];
@@ -68,5 +70,11 @@ class Topic extends Model
 
         return route('topics.show' , array_merge([$this->id,$this->slug] , $params));
     }
+
+
+
+
+
+
 
 }
