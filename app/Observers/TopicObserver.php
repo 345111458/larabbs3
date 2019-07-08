@@ -47,7 +47,7 @@ class TopicObserver
     // 监听话题删除成功的事件
     public function deleted(Topic $topic){
 
-        \DB::table('replies')->where('topic_id',$topic->id)->delete();
+        // \DB::table('replies')->where('topic_id',$topic->id)->delete();
     }
 
 
